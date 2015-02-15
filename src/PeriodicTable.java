@@ -1,6 +1,7 @@
 import javax.swing.*;
 import javax.swing.plaf.LayerUI;
-import java.io.InputStream;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.util.Scanner;
 
 public class PeriodicTable{
@@ -10,7 +11,12 @@ public class PeriodicTable{
 
     public static void main(String[] args){
         elements = new Element[118];
-        Scanner sc = new Scanner(PeriodicTable.class.getClassLoader().getResourceAsStream("Values.txt"));
+        Scanner sc = null;
+        try {
+            sc = new Scanner(new FileInputStream("Values.txt"));
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
         for(int i = 0; i < elements.length; i++){
             String data = sc.next();
             String[] values = data.split(";");
