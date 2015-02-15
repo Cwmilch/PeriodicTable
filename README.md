@@ -1,4 +1,4 @@
-# PerodicTable
+# PeriodicTable
 Interactive periodic table in java. 
 
 Copyright (C) 2015 Carter Milch
