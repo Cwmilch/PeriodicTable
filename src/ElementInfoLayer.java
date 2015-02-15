@@ -10,11 +10,11 @@ public class ElementInfoLayer extends LayerUI<JComponent> {
 
     public ElementInfoLayer(){
         Thread[] getters = new Thread[5];
-        getters[0] = new Thread(new ImageThread(0, 21, this));
-        getters[1] = new Thread(new ImageThread(22, 40, this));
-        getters[2] = new Thread(new ImageThread(41, 60, this));
-        getters[3] = new Thread(new ImageThread(61, 80, this));
-        getters[4] = new Thread(new ImageThread(81, 117, this));
+        getters[0] = new Thread(new ImageThread(0, 21));
+        getters[1] = new Thread(new ImageThread(22, 40));
+        getters[2] = new Thread(new ImageThread(41, 60));
+        getters[3] = new Thread(new ImageThread(61, 80));
+        getters[4] = new Thread(new ImageThread(81, 117));
         for(Thread t : getters){
             t.start();
         }

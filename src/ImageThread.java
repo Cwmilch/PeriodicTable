@@ -7,9 +7,8 @@ import java.net.URL;
 public class ImageThread implements Runnable {
 
     private int start, end;
-    private ElementInfoLayer layerUI;
 
-    public ImageThread(int start, int end, ElementInfoLayer layerUI){
+    public ImageThread(int start, int end){
         this.start = start;
         this.end = end;
     }
