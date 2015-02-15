@@ -1,0 +1,104 @@
+import javax.swing.*;
+import java.awt.*;
+
+public class TableRenderer extends JPanel{
+
+    private static final String SEPARATOR = System.lineSeparator();
+    Element[] elements = PeriodicTable.getElements();
+
+    public TableRenderer(){
+        FlowLayout f = new FlowLayout();
+        f.setVgap(0);
+        f.setHgap(0);
+        f.setAlignment(FlowLayout.LEFT);
+        setLayout(f);
+        paintTable();
+        paintSeries();
+    }
+
+    public void paintElement(int number){
+        JEditorPane pane = new JEditorPane();
+        Element element = elements[number];
+        String data = "";
+        pane.setContentType("text/html");
+        pane.setSize(53, 63);
+        pane.setPreferredSize(new Dimension(pane.getWidth(), pane.getHeight()));
+        Dimension max = pane.getPreferredSize();
+        pane.setMaximumSize(max);
+        pane.setMinimumSize(max);
+        pane.setEditable(false);
+        pane.setBorder(BorderFactory.createLineBorder(Color.BLACK, 1));
+        pane.setBackground(getElementColor(element));
+        pane.addMouseListener(new OverlayListener(this));
+        data += "<center><font size=2>" + element.getName() + "</font></center>" + SEPARATOR;
+        data += "<center><font size=3>" + element.getNumber() + "</font></center>" + SEPARATOR;
+        data += "<center><font size=4><strong>" + element.getSymbol() + "</strong></font></center>" + SEPARATOR;
+        data += "<center><font size=1>" + element.getMass() + "</font></center>";
+        pane.setText(data);
+        add(pane);
+    }
+
+    public void paintTable(){
+        paintElement(0);
+        paintBlank(15);
+        paintCustomBlank(92);
+        paintElement(1);
+        paintElement(2);
+        paintElement(3);
+        paintBlank(9);
+        paintCustomBlank(98);
+        for(int i = 4; i <= 11; i++){
+            paintElement(i);
+        }
+        paintBlank(9);
+        paintCustomBlank(98);
+        for(int i = 12; i <= 56; i++){
+            paintElement(i);
+        }
+        for(int i = 71; i <= 88; i++){
+            paintElement(i);
+        }
+        for(int i = 103; i <= 117; i++){
+            paintElement(i);
+        }
+    }
+
+    public void paintSeries(){
+        JTextField spacer = new JTextField();
+        spacer.setBorder(BorderFactory.createEmptyBorder(10, 465, 10, 456));
+        spacer.setEnabled(false);
+        spacer.setBackground(getBackground());
+        add(spacer);
+
+        paintBlank(2);
+        for(int i = 57; i <= 70; i++){
+            paintElement(i);
+        }
+        paintBlank(2);
+        for(int i = 89; i <= 102; i++){
+            paintElement(i);
+        }
+    }
+
+    public void paintBlank(int amount){
+        JTextArea a = new JTextArea();
+        a.setSize(54, 64);
+        a.setBorder(BorderFactory.createEmptyBorder(0, 54 * (amount / 2), 0, 54 * (amount / 2)));
+        a.setEnabled(false);
+        a.setBackground(getBackground());
+        add(a);
+    }
+
+    public void paintCustomBlank(int size){
+        JTextArea a = new JTextArea();
+        a.setSize(54, 64);
+        a.setBorder(BorderFactory.createEmptyBorder(0, 0, 0, size));
+        a.setEnabled(false);
+        a.setBackground(getBackground());
+        add(a);
+    }
+
+    public Color getElementColor(Element e){
+        return Colors.getElementEnum(e.getNumber()).getColor();
+    }
+}
