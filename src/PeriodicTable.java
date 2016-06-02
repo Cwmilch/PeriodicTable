@@ -15,7 +15,8 @@ public class PeriodicTable{
         try {
             sc = new Scanner(new FileInputStream("Values.txt"));
         } catch (FileNotFoundException e) {
-            e.printStackTrace();
+            System.out.println("Values.txt file not found! Exiting...");
+            System.exit(0);
         }
         for(int i = 0; i < elements.length; i++){
             String data = sc.next();
@@ -32,9 +33,9 @@ public class PeriodicTable{
 
         JFrame table = new JFrame("Periodic Table");
         table.setSize(960, 650);
-        JLayer<JComponent> layer = new JLayer<JComponent>(new TableRenderer(), layerUI);
+        JLayer<JComponent> layer = new JLayer<>(new TableRenderer(), layerUI);
         table.setContentPane(layer);
-        table.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
+        table.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         table.setResizable(false);
         table.setVisible(true);
     }
