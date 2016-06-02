@@ -27,6 +27,8 @@ public class ImageThread implements Runnable {
                     URL url = new URL("http://images-of-elements.com/s/" + name + (!name.equals("transactinoid") ? ".jpg" : ".png"));
                     img = ImageIO.read(url);
                 } catch (IOException e1) {
+                    System.err.println("Unable to download image for element number " + i + ". " +
+                            "Make sure you have an active internet connection.");
                     e1.printStackTrace();
                 }
             }
