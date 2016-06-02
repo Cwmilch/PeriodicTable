@@ -22,9 +22,9 @@ public class ElementInfoLayer extends LayerUI<JComponent> {
 
     @Override
     public void paint(Graphics g, JComponent c) {
-        super.paint(g, c);
-
-        if (c instanceof JEditorPane) {
+        if(!(c instanceof JEditorPane)) {
+            super.paint(g, c);
+        } else {
             Graphics2D g2 = (Graphics2D) g;
             paintInfo(((JEditorPane) c).getText(), g2, c.getBackground().darker());
         }
