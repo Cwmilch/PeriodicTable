@@ -1,11 +1,11 @@
-public class Element {
+class Element {
 
     private String name, symbol, config;
     private int number;
     private int[] charge;
     private float mass;
 
-    public Element(String name, String symbol, int number, String configuration, float mass, int[] charge){
+    Element(String name, String symbol, int number, String configuration, float mass, int[] charge){
         this.name = name;
         this.symbol = symbol;
         this.number = number;
@@ -14,19 +14,19 @@ public class Element {
         this.mass = mass;
     }
 
-    public String getName(){
+    String getName(){
         return name;
     }
 
-    public String getSymbol(){
+    String getSymbol(){
         return symbol;
     }
 
-    public int getNumber(){
+    int getNumber(){
         return number;
     }
 
-    public String getChargeString(){
+    String getChargeString(){
         String string = "";
         for(int i = 0; i < charge.length; i++){
             string += getChargeString(i) + (charge.length - i > 1 ? "/" : "");
@@ -35,15 +35,15 @@ public class Element {
         return string;
     }
 
-    public String getChargeString(int index){
+    private String getChargeString(int index){
         return Math.abs(charge[index]) + (charge[index] != 0 ? (charge[index] > 0 ? "+" : "-") : "");
     }
 
-    public float getMass(){
+    float getMass(){
         return mass;
     }
 
-    public String getConfiguration(){
+    String getConfiguration(){
         return config;
     }
 }

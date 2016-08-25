@@ -3,12 +3,12 @@ import javax.swing.plaf.LayerUI;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 
-public class ElementInfoLayer extends LayerUI<JComponent> {
+class ElementInfoLayer extends LayerUI<JComponent> {
 
     private static BufferedImage[] images = new BufferedImage[PeriodicTable.getElements().length];
 
 
-    public ElementInfoLayer(){
+    ElementInfoLayer(){
         Thread[] getters = new Thread[5];
         getters[0] = new Thread(new ImageThread(0, 21));
         getters[1] = new Thread(new ImageThread(22, 40));
@@ -30,7 +30,7 @@ public class ElementInfoLayer extends LayerUI<JComponent> {
         }
     }
 
-    public void paintInfo(String input, Graphics2D g, Color c){
+    private void paintInfo(String input, Graphics2D g, Color c){
         g.setColor(new Color(185, 195, 199));
         g.fillRect(106, 63, 530, 126);
         g.setColor(c);
@@ -53,11 +53,11 @@ public class ElementInfoLayer extends LayerUI<JComponent> {
         g.drawImage(image, 500, 64, 136, 125, null);
     }
 
-    public BufferedImage getImage(int element){
+    private BufferedImage getImage(int element){
         return images[element - 1];
     }
 
-    public String[] data(String input){
+    private String[] data(String input){
         String[] data = new String[2];
         int start = 0;
         for(int i = 0; i < data.length; i++){
@@ -68,7 +68,7 @@ public class ElementInfoLayer extends LayerUI<JComponent> {
         return data;
     }
 
-    public int findSubstring(String s, int beginIndex, boolean integer){
+    private int findSubstring(String s, int beginIndex, boolean integer){
         int end = 0;
         char[] chars = s.substring(beginIndex).toCharArray();
         for(char c : chars){
@@ -89,11 +89,11 @@ public class ElementInfoLayer extends LayerUI<JComponent> {
         return beginIndex + end;
     }
 
-    public static void setPicture(BufferedImage image, int i){
+    static void setPicture(BufferedImage image, int i){
         images[i] = image;
     }
 
-    public boolean isIntegerChar(char c){
+    private boolean isIntegerChar(char c){
         String s = Character.toString(c);
         try{
             Integer.parseInt(s);

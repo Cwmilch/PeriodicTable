@@ -1,6 +1,6 @@
 import java.awt.*;
 
-public enum Colors {
+enum Colors {
 
     ALKALI(new Color(211, 84, 0), new int[]{3, 11, 19, 37, 55, 87}),
     ALKALINE(new Color(230, 126, 34), new int[]{4, 12, 20, 38, 56, 88}),
@@ -25,7 +25,7 @@ public enum Colors {
         return c;
     }
 
-    public static Colors getElementEnum(int element){
+    public static Colors getFromElementEnum(int element){
         for(Colors c : Colors.values()){
             int[] elements = c.elements;
             for(int i : elements){

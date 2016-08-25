@@ -4,11 +4,11 @@ import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.net.URL;
 
-public class ImageThread implements Runnable {
+class ImageThread implements Runnable {
 
     private int start, end;
 
-    public ImageThread(int start, int end){
+    ImageThread(int start, int end){
         this.start = start;
         this.end = end;
     }
@@ -35,5 +35,4 @@ public class ImageThread implements Runnable {
             ElementInfoLayer.setPicture((BufferedImage)img, i);
         }
     }
-
 }

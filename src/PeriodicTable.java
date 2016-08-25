@@ -32,7 +32,7 @@ public class PeriodicTable{
         layerUI = new ElementInfoLayer();
 
         JFrame table = new JFrame("Periodic Table");
-        table.setSize(960, 650);
+        table.setSize(960, 635);
         JLayer<JComponent> layer = new JLayer<>(new TableRenderer(), layerUI);
         table.setContentPane(layer);
         table.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
@@ -40,7 +40,7 @@ public class PeriodicTable{
         table.setVisible(true);
     }
 
-    public static int[] charge(String input){
+    private static int[] charge(String input){
         int[] charge;
         if(input.contains("/")){
             String[] charges = input.split("/");
@@ -54,15 +54,15 @@ public class PeriodicTable{
         return charge;
     }
 
-    public static Element getElement(String number){
+    static Element getElement(String number){
         return elements[Integer.parseInt(number) - 1];
     }
 
-    public static Element[] getElements(){
+    static Element[] getElements(){
         return elements;
     }
 
-    public static LayerUI<JComponent> getLayer(){
+    static LayerUI<JComponent> getLayer(){
         return layerUI;
     }
 }

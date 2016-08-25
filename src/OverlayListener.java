@@ -3,11 +3,11 @@ import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
-public class OverlayListener extends MouseAdapter {
+class OverlayListener extends MouseAdapter {
 
     private JPanel panel;
 
-    public OverlayListener(JPanel panel){
+    OverlayListener(JPanel panel){
         this.panel = panel;
     }
     @Override

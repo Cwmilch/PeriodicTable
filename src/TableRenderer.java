@@ -1,12 +1,14 @@
 import javax.swing.*;
 import java.awt.*;
 
-public class TableRenderer extends JPanel{
+class TableRenderer extends JPanel{
 
+    private static final int TEXT_X = 54;
+    private static final int TEXT_Y = 64;
     private static final String SEPARATOR = System.lineSeparator();
-    Element[] elements = PeriodicTable.getElements();
+    private Element[] elements = PeriodicTable.getElements();
 
-    public TableRenderer(){
+    TableRenderer(){
         FlowLayout f = new FlowLayout();
         f.setVgap(0);
         f.setHgap(0);
@@ -16,12 +18,12 @@ public class TableRenderer extends JPanel{
         paintSeries();
     }
 
-    public void paintElement(int number){
+    private void paintElement(int number){
         JEditorPane pane = new JEditorPane();
         Element element = elements[number];
         String data = "";
         pane.setContentType("text/html");
-        pane.setSize(53, 63);
+        pane.setSize(TEXT_X - 1, TEXT_Y - 1);
         pane.setPreferredSize(new Dimension(pane.getWidth(), pane.getHeight()));
         Dimension max = pane.getPreferredSize();
         pane.setMaximumSize(max);
@@ -38,7 +40,7 @@ public class TableRenderer extends JPanel{
         add(pane);
     }
 
-    public void paintTable(){
+    private void paintTable(){
         paintElement(0);
         paintBlank(15);
         paintCustomBlank(92);
@@ -63,7 +65,7 @@ public class TableRenderer extends JPanel{
         }
     }
 
-    public void paintSeries(){
+    private void paintSeries(){
         JTextField spacer = new JTextField();
         spacer.setBorder(BorderFactory.createEmptyBorder(10, 465, 10, 456));
         spacer.setEnabled(false);
@@ -80,25 +82,28 @@ public class TableRenderer extends JPanel{
         }
     }
 
-    public void paintBlank(int amount){
+    private void paintBlank(int amount){
         JTextArea a = new JTextArea();
-        a.setSize(54, 64);
-        a.setBorder(BorderFactory.createEmptyBorder(0, 54 * (amount / 2), 0, 54 * (amount / 2)));
+        a.setSize(TEXT_X, TEXT_Y);
+        a.setBorder(BorderFactory.createEmptyBorder(0, TEXT_X * (amount / 2), 0, TEXT_X * (amount / 2)));
         a.setEnabled(false);
         a.setBackground(getBackground());
         add(a);
     }
 
-    public void paintCustomBlank(int size){
+    private void paintCustomBlank(int size){
         JTextArea a = new JTextArea();
-        a.setSize(54, 64);
+        a.setSize(TEXT_X, TEXT_Y);
         a.setBorder(BorderFactory.createEmptyBorder(0, 0, 0, size));
         a.setEnabled(false);
         a.setBackground(getBackground());
         add(a);
     }
 
-    public Color getElementColor(Element e){
-        return Colors.getElementEnum(e.getNumber()).getColor();
+    private Color getElementColor(Element e){
+        Colors c = Colors.getFromElementEnum(e.getNumber());
+        assert c != null;
+
+        return c.getColor();
     }
 }
