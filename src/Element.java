@@ -14,29 +14,52 @@ class Element {
         this.mass = mass;
     }
 
+    /**
+     * @return The Element's name
+     */
     String getName(){
         return name;
     }
 
+    /**
+     * @return The Element's atomic symbol.
+     */
     String getSymbol(){
         return symbol;
     }
 
+    /**
+     * @return The Element's atomic number.
+     */
     int getNumber(){
         return number;
     }
 
+    /**
+     * Gets the charge of the Element, separates multiple values with '/' if applicable.
+     * @return The Element's charges as a string.
+     */
     String getChargeString(){
-        String string = "";
+        StringBuilder string = new StringBuilder();
         for(int i = 0; i < charge.length; i++){
-            string += getChargeString(i) + (charge.length - i > 1 ? "/" : "");
+            string.append(getChargeString(i)).append(charge.length - i > 1 ? "/" : "");
         }
 
-        return string;
+        return string.toString();
     }
 
+    /**
+     * @param index The index of the Element's charge in {@link Element#charge}
+     * @return The charge of the Element as a string, appending a + or - sign to the end if applicable.
+     */
     private String getChargeString(int index){
-        return Math.abs(charge[index]) + (charge[index] != 0 ? (charge[index] > 0 ? "+" : "-") : "");
+        int val = charge[index];
+        String sign = "";
+        if (charge[index] != 0){
+            sign = charge[index]  > 0 ? "+" : "-";
+        }
+
+        return Math.abs(val) + sign;
     }
 
     float getMass(){

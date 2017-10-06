@@ -23,8 +23,15 @@ class ImageThread implements Runnable {
                 img = ImageIO.read(url);
             } catch (IOException e) {
                 try {
-                    name = i < 104 ? (i == 13 ? "aluminium" : "caesium") : "transactinoid";
-                    URL url = new URL("http://images-of-elements.com/s/" + name + (!name.equals("transactinoid") ? ".jpg" : ".png"));
+
+                    //Put URL together, taking special cases into account
+                    if(i < 104){
+                        name = i == 13 ? "aluminium" : "caesium";
+                    }else{
+                        name = "transactinoid";
+                    }
+                    URL url = new URL("http://images-of-elements.com/s/" + name +
+                            (!name.equals("transactinoid") ? ".jpg" : ".png"));
                     img = ImageIO.read(url);
                 } catch (IOException e1) {
                     System.err.println("Unable to download image for element number " + i + ". " +

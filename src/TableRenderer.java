@@ -18,6 +18,11 @@ class TableRenderer extends JPanel{
         paintSeries();
     }
 
+    /**
+     * Create a JEditorPane for an element displaying its atomic name, number, symbol, and mass.
+     * Text is formatted using HTML.
+     * @param number The number of the element
+     */
     private void paintElement(int number){
         JEditorPane pane = new JEditorPane();
         Element element = elements[number];
@@ -32,14 +37,19 @@ class TableRenderer extends JPanel{
         pane.setBorder(BorderFactory.createLineBorder(Color.BLACK, 1));
         pane.setBackground(getElementColor(element));
         pane.addMouseListener(new OverlayListener(this));
+
         data += "<center><font size=2>" + element.getName() + "</font></center>" + SEPARATOR;
         data += "<center><font size=3>" + element.getNumber() + "</font></center>" + SEPARATOR;
         data += "<center><font size=4><strong>" + element.getSymbol() + "</strong></font></center>" + SEPARATOR;
         data += "<center><font size=1>" + element.getMass() + "</font></center>";
+
         pane.setText(data);
         add(pane);
     }
 
+    /**
+     * Render all elements onto the table
+     */
     private void paintTable(){
         paintElement(0);
         paintBlank(15);
@@ -65,6 +75,9 @@ class TableRenderer extends JPanel{
         }
     }
 
+    /**
+     * Paint the Lanthanide and Actinide series.
+     */
     private void paintSeries(){
         JTextField spacer = new JTextField();
         spacer.setBorder(BorderFactory.createEmptyBorder(10, 465, 10, 456));
@@ -82,6 +95,10 @@ class TableRenderer extends JPanel{
         }
     }
 
+    /**
+     * Create a blank space that's the same width as the JPanels used to display elements
+     * @param amount The amount of blank spaces to create
+     */
     private void paintBlank(int amount){
         JTextArea a = new JTextArea();
         a.setSize(TEXT_X, TEXT_Y);
@@ -91,6 +108,10 @@ class TableRenderer extends JPanel{
         add(a);
     }
 
+    /**
+     * Create custom-sized a blank space in the table to help align elements
+     * @param size The size of the space
+     */
     private void paintCustomBlank(int size){
         JTextArea a = new JTextArea();
         a.setSize(TEXT_X, TEXT_Y);
@@ -100,6 +121,12 @@ class TableRenderer extends JPanel{
         add(a);
     }
 
+    /**
+     * Retrieve the color associated with an Element as specified in Colors
+     * @see Colors
+     * @param e The element
+     * @return The color of the element
+     */
     private Color getElementColor(Element e){
         Colors c = Colors.getFromElementEnum(e.getNumber());
         assert c != null;

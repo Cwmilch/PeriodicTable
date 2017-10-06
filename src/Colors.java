@@ -25,11 +25,16 @@ enum Colors {
         return c;
     }
 
-    public static Colors getFromElementEnum(int element){
+    /**
+     * Return the classification a given Element falls into in order to get its color.
+     * @param elementNum The atomic number of the element
+     * @return The enum value associated with the Element's number
+     */
+    public static Colors getFromElementEnum(int elementNum){
         for(Colors c : Colors.values()){
             int[] elements = c.elements;
             for(int i : elements){
-                if(i == element){
+                if(i == elementNum){
                     return c;
                 }
             }
