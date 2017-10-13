@@ -66,7 +66,7 @@ class ElementInfoLayer extends LayerUI<JComponent> {
     /**
      * Return the image associated with a given {@link Element}.
      * @param element The atomic number of the Element
-     * @return {@link ElementInfoLayer#images}[{@param element} - 1]
+     * @return {@link ElementInfoLayer#images}[@param element} - 1]
      */
     private BufferedImage getImage(int element){
         return images[element - 1];
